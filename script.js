@@ -63,8 +63,14 @@ const lastNames = [
   "Rose"
 ];
 
+let unusedFirstNames = [...firstNames];
+
 function getRandomName() {
-    const firstName = firstNames[Math.floor(Math.random() * firstNames.length)];
+    if (unusedFirstNames.length === 0) {
+        unusedFirstNames = [...firstNames];
+    }
+    const firstIndex = Math.floor(Math.random() * unusedFirstNames.length);
+    const firstName = unusedFirstNames.splice(firstIndex, 1)[0];
     const lastName = lastNames[Math.floor(Math.random() * lastNames.length)];
     return `${firstName} ${lastName}`;
 }
